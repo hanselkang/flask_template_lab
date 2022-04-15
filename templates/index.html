@@ -1,0 +1,45 @@
+<title> My Event List</title>
+</head>
+
+<body>
+    <h1>
+        My Event List!
+    </h1>
+
+        <form action="/events" method="post">
+            <label for="date">Dates</label>
+            <input type="date" name="date" id="date">
+            <label for="name">Name of Event</label>
+            <input type="text" name="name" id="name">
+            <label for="number_of_guests">Number of Guests</label>
+            <input type="text" name="number_of_guests" id="number_of_guests">
+            <label for="room_location">Room Location</label>
+            <input type="text" name="room_location" id="room_location">
+            <label for="description">Description</label>
+
+            <label for="recurring">Recurring</label>
+            <input type="checkbox" id="recurring" name="recurring" value="True" >
+
+            <textarea name="description" id="description" rows="2" cols="30"></textarea>
+            <input type="submit" value="Add Event">
+        </form> <!-- ADDED -->
+
+
+    {% for event in events %}
+    <div>
+        <p>
+           Date: {{ event.date }}, Name: <b>{{ event.name_of_event }}</b>,
+            Guests: {{ event.number_of_guest}}, Location: {{event.room_location}}, Description:{{event.description}}     
+                {% if event.recurring == True %}     
+                <span>Recurring</span>
+                {% else %}
+                <span>Single Event</span>
+                {% endif %}
+            <!-- <form class='form-inline' action="/events/delete/{{event.name}} method="POST"></form> -->
+        </p>
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>
